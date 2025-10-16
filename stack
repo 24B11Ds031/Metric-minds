@@ -1,0 +1,52 @@
+#include <stdio.h>
+#define MAX 100
+
+// Stack structure
+typedef struct {
+    int arr[MAX];
+    int top;
+} Stack;
+
+// Initialize stack
+void init(Stack *s) {
+    s->top = -1;
+}
+
+// Check if stack is empty
+int isEmpty(Stack *s) {
+    return s->top == -1;
+}
+
+// Check if stack is full
+int isFull(Stack *s) {
+    return s->top == MAX - 1;
+}
+
+// Push an element to the stack
+void push(Stack *s, int value) {
+    if (isFull(s)) {
+        printf("Stack overflow!\n");
+        return;
+    }
+    s->arr[++(s->top)] = value;
+}
+
+// Pop an element from the stack
+int pop(Stack *s) {
+    if (isEmpty(s)) {
+        printf("Stack underflow!\n");
+        return -1;  // Return -1 to indicate error
+    }
+    return s->arr[(s->top)--];
+}
+
+// Peek (get the top element without removing)
+int peek(Stack *s) {
+    if (isEmpty(s)) {
+        printf("Stack is empty!\n");
+        return -1;
+    }
+    return s->arr[s->top];
+}
+
+int main(
